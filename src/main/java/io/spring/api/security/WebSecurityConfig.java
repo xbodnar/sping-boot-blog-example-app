@@ -46,26 +46,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
         .and()
         .authorizeRequests()
-        .antMatchers(HttpMethod.OPTIONS)
-        .permitAll()
-        .antMatchers("/graphiql")
-        .permitAll()
-        .antMatchers("/graphql")
-        .permitAll()
-        .antMatchers("/swagger-ui.html", "/swagger-ui/**", "/v3/api-docs/**")
-        .permitAll()
-        .antMatchers("/actuator/health")
-        .permitAll()
-        .antMatchers(HttpMethod.GET, "/articles/feed")
-        .authenticated()
-        .antMatchers(HttpMethod.POST, "/users", "/users/login")
-        .permitAll()
-        .antMatchers(HttpMethod.GET, "/articles/**", "/profiles/**", "/tags")
-        .permitAll()
         .anyRequest()
-        .authenticated();
-
-    http.addFilterBefore(jwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
+        .permitAll();
   }
 
   @Bean
